@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+    		<title>COVID19 Intro</title>
+  	</head>
+  	<style type='text/css'>
+		html * {
+		   font-family: Arial, Helvetica, sans-serif !important;
+		}
+		body {
+			width: 50%;
+		    margin: 0 auto;
+		    text-align: center;
+		}
+		img {
+			min-width: 95%;
+			max-width: 120%;
+			max-height: 30%;
+		}
+		a {
+			font-size: 100%;
+		}
+		h1 {
+			font-size: 200%;
+		}
+		p {
+			font-size: 120%;
+		}
+		a:link, a:visited {
+		 	color: #0E4174;
+			text-decoration: none;
+		}
+		a:hover {
+			color:rgb(100,149,237);
+		 	text-decoration: none;
+		}
+		button {
+			background-color: white; 
+  			color: black; 
+  			border: 2px solid #008CBA;
+  			border-radius: 8px;
+			padding: 16px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			text-decoration-color: white;
+			margin: 4px 2px;
+			transition-duration: 0.4s;
+			cursor: pointer;
+		}
+		button:hover {
+			background-color: #008CBA;
+			color: white;
+		}
+		.loading-bar {
+			display: none;
+			position: fixed;
+			z-index: 1000;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-image: url('./loading.gif');
+			background-position: 50% 50%; /* centro */
+			background-color: rgba(255, 255, 255, 0.8);
+			background-repeat: no-repeat;
+		}
+		body.loading {
+			overflow: hidden;
+		}
+		body.loading .loading-bar {
+			display: block;
+		}
+  	</style>
+  	<body>
+		<h1 align="center" margin=0>COVID-19 Italia</h1>
+		<p>Benvenuto sul sito COVID-19 Italia. Qui potrai consultare l'evoluzione del virus nel Paese giorno per giorno.</p>
+		<img src="http://www.salute.gov.it/imgs/C_17_pagineAree_5351_0_immagine.jpg">
+		<br><br>
+		<div class="loading-bar"></div>
+		<ul>
+		<li><a href=./risorse/italia_completa.html class=continue id=0> <b>NAZIONALE</b> - Clicca per visualizzare i grafici nazionali</a><br><br></li>
+		<li><a href=./risorse/regionali.html class=continue id=1> <b>REGIONALE</b> - Clicca per visualizzare il confronto tra regioni</a> <br><br><br></li>
+		</ul>
+		<button href=https://1wjt9jh9z8.execute-api.us-east-1.amazonaws.com/exec/download class=continue id=1> SCARICA I DATI AGGIORNATI </button><br><br>
+		<h5>Fonte: <a href=https://github.com/pcm-dpc/COVID-19> https://github.com/pcm-dpc/COVID-19 </a></h5>
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var API_URL = ['https://1wjt9jh9z8.execute-api.us-east-1.amazonaws.com/exec/covid', 'https://1wjt9jh9z8.execute-api.us-east-1.amazonaws.com/exec/covidregional'];
+		window.addEventListener('load', function () {
+	        // spinnerWrapper.style.display = 'none';
+	        spinnerWrapper.parentElement.removeChild(spinnerWrapper);
+	    });
+
+
+		$('.continue').click(function (e) {
+		    //e.preventDefault(); // attende la risposta della richiesta ajax
+		    $link = $(this); // recupera i valori dell'ambiente
+		    correct_url = API_URL[$link.attr('id')]
+		    
+		    document.body.className = "loading";
+
+		    $.ajax({
+		        type: 'GET',
+		        url: correct_url,
+		        
+		        error: function () {
+		            alert("Problem with the server");
+		        },
+		        success: function (response) {
+		        	document.body.className = "";
+		            window.location.href = $link.attr('href');
+		        }
+		    });
+			return false;
+		});
+	</script>
+</html>
