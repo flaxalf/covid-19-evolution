@@ -3,8 +3,8 @@ L’obiettivo di questo progetto è quello di realizzare
 un’applicazione web serverless che utilizzi i servizi
 messi a disposizione da AWS.
 
-A fronte dell’attuale situazione si intende realizzare
-un’applicazione che analizziun insieme di dati relativi
+A fronte dell’attuale situazione, si intende realizzare
+un’applicazione che analizzi un insieme di dati relativi
 agli attuali positivi / deceduti dovuti al virus Covid-19
 e poterli visualizzare attraverso grafici interattivi.
 
