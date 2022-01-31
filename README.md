@@ -18,8 +18,9 @@ costruzione di tale infrastruttura seguendo le linee
 guida presenti nella Relazione.
 
 
-* È possibile accedere alle varie funzionalità dal sito:
-  https://s3.amazonaws.com/www.plotcovid.it/index.html
+* È possibile accedere alle varie funzionalità dal sito (non
+* più attivo):
+  ~~https://s3.amazonaws.com/www.plotcovid.it/index.html
 
 
 > Fonte dati: https://github.com/pcm-dpc/COVID-19
